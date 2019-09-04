@@ -1,19 +1,10 @@
-/*
-COLORS:
-
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
-
-/* Simple reset using universal selector */
 
 $primary-color:       #55c57a;
 $primary-color-light: #7ed56f;
 $primary-color-dark:  #28b485;
 $color-dark-grey:     #41434d;
 $color-eggshell:      #F5FFFF;
+$color-coal:          #000000;
 
 *,
 *::after,
@@ -41,30 +32,31 @@ body {
 .header {
     height: 95vh;
     background-image: 
-        linear-gradient(to right bottom,$primary-color-light,$primary-color-dark),
+        linear-gradient(to right bottom,rgba($primary-color-light,0.55),rgba($primary-color-dark,0.75)),
         url(../img/hero.jpg);
     background-size: cover;
     background-position: center;
     clip-path: polygon(0 0, 100% 20%, 100% 100%, 0 80%);
     position: relative;
-}
 
-.header__logo-box {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-}
 
-.header__logo {
-    height: 3.5rem;
-}
+    &__logo-box {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+    }
 
-.header__text-box {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
+    &__logo {
+        height: 3.5rem;
+    }
+
+    &__text-box {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+    }
 }
 
 .heading-primary {
@@ -72,21 +64,21 @@ body {
     text-transform: uppercase;
     backface-visibility: hidden;
     margin-bottom: 3rem;
-}
 
-.heading-primary--main {
-    display: block;
-    font-size: 6rem;
-    letter-spacing: 3.5rem;
-    animation: moveInLeft 1.2s ease-in;
-}
-
-.heading-primary--sub {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 1.3rem;
-    animation: moveInRight 1.2s ease-in;
+    &--main {
+        display: block;
+        font-size: 6rem;
+        letter-spacing: 3.5rem;
+        animation: moveInLeft 1.2s ease-in;
+    }
+    
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.3rem;
+        animation: moveInRight 1.2s ease-in;
+    }
 }
 
 @keyframes moveInLeft {
@@ -128,55 +120,59 @@ body {
     }
 }
 
-.btn:link,
-.btn:visited {
-    display: inline-block;
-    text-transform: uppercase;
-    text-decoration: none;
-    padding: 1rem 2.5rem;
-    border-radius: 2.5rem;
-    transition: all 0.33s;
-    position: relative;
-}
 
-.btn--white {
-    background-color: $color-eggshell;
-    color: $color-dark-grey;
-}
+.btn {
+    &:link,
+    &:visited {
+        display: inline-block;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1rem 2.5rem;
+        border-radius: 2.5rem;
+        transition: all 0.33s;
+        position: relative;
+    }
+    
+    &:hover {
+        transform: translateY(-0.3rem);
+        box-shadow: 0 0.8rem 2rem rgba($color-coal,0.3);
 
-.btn:hover {
-    transform: translateY(-0.3rem);
-    box-shadow: 0 0.8rem 2rem #00000030;
-}
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+    
+    &:active {
+        transform: translateY(-0.2rem);
+        box-shadow: 0 0.8rem 1.2rem rgba($color-coal,0.4);
+    }
+    
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 2.5rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.35s;
+    }
 
-.btn:active {
-    transform: translateY(-0.2rem);
-    box-shadow: 0 0.8rem 1.2rem #00000040;
-}
+    &--white {
+        background-color: $color-eggshell;
+        color: $color-dark-grey;
 
-.btn::after {
-    content: "";
-    display: inline-block;
-    height: 100%;
-    width: 100%;
-    border-radius: 2.5rem;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: all 0.35s;
-}
+        &::after {
+            background-color: $color-eggshell;
+        }
+    }
 
-.btn--white::after {
-    background-color: $color-eggshell;
-}
-
-.btn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-}
-
-.btn--animated {
-    animation: moveInBottom 0.75s ease-out 0.5s;
-    animation-fill-mode: backwards;
+    
+    &--animated {
+        animation: moveInBottom 0.75s ease-out 0.5s;
+        animation-fill-mode: backwards;
+    }
 }
