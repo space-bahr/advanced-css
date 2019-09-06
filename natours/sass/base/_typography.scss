@@ -28,3 +28,33 @@ body {
         animation: moveInRight 1.2s ease-in;
     }
 }
+
+.heading-secondary {
+    font-size: 3.75rem;
+    text-transform: uppercase;
+    margin: 0 auto;
+    display: inline-block;
+    font-weight: 700;
+    background-image: linear-gradient(to right, $primary-color-light, $primary-color-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: letter-spacing 0.5s;
+
+    &:hover {
+        letter-spacing: 3px;
+    }
+}
+
+.heading-tertiary {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph {
+    font-size: 1.6rem;
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+}
